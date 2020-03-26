@@ -1,6 +1,7 @@
 import express from 'express';
 import ServerStatus from '../common/model/ServerStatus';
 import bodyParser from 'body-parser';
+import "reflect-metadata";
 
 const app = express();
 
