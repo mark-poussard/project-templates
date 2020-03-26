@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import './app.css';
-import ReactImage from './react.png';
-import GetUsernameResponse from '../common/model/GetUsernameResponse';
+import React, { useEffect, useState } from 'react';
+import ServerStatus from '../common/model/ServerStatus';
+import './App.scss';
 
 const App : React.FC = props => {
-  const [username, setUsername] = useState<string | null>(null);
+  const [serverStatus, setServerStatus] = useState<ServerStatus | null>(null);
   useEffect(() => {
-    fetch('/api/getUsername')
+    fetch('/api/status')
       .then(res => res.json())
-      .then(GetUsernameResponse.deserialize)
-      .then(user => setUsername(user.getUsername));
+      .then(ServerStatus.deserialize)
+      .then(setServerStatus);
   }, [])
   return (
     <div>
-      {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-      <img src={ReactImage} alt="react" />
+      <h1>TSX Fullstack Template</h1>
+      {serverStatus != null ? 
+        <h2 className={`live`}>Server is live</h2> : 
+        <h2 className={`down`}>Server is down</h2>
+      }
     </div>
   );
 }
