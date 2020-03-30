@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ServerStatus from '../common/model/ServerStatus';
 import './App.scss';
+import LoadData from './view/components/async/LoadData';
+import NoteController from './business/controller/NoteController';
+import NoteListView from './view/note/NoteListView';
 
 const App : React.FC = props => {
   const [serverStatus, setServerStatus] = useState<ServerStatus | null>(null);
@@ -17,6 +20,11 @@ const App : React.FC = props => {
         <h2 className={`live`}>Server is live</h2> : 
         <h2 className={`down`}>Server is down</h2>
       }
+      <LoadData promise={NoteController.getAll()}>
+        {notes =>
+          <NoteListView notes={notes}/>
+        }
+      </LoadData>
     </div>
   );
 }
