@@ -6,10 +6,10 @@ import { FieldType } from './deserialization/FieldType';
 @Entity()
 export default class Note{
     @PrimaryGeneratedColumn()
-    id : Nullable<number>;
+    readonly id : Nullable<number>;
 
     @Column("text")
-    text : string;
+    readonly text : string;
 
     constructor(id : Nullable<number>, text : string){
         this.id = id;
@@ -23,7 +23,7 @@ export default class Note{
         return new Note(id, text);
     }
 
-    static createNote = (text : string) => {
+    static create = (text : string) => {
         return new Note(null, text);
     }
 }

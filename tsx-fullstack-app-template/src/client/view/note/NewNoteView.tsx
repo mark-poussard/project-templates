@@ -12,7 +12,7 @@ const NewNoteView : React.FC<INewNoteViewProps> = props => {
         setText(event.target.value);
     }
     const onClick = () => {
-        const note = Note.createNote(text);
+        const note = Note.create(text);
         NoteController.add(note)
             .then(note => props.addNote(note))
             .then(() => setText(""));

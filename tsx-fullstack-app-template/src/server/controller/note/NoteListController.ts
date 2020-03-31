@@ -1,10 +1,11 @@
-import IController from "../IController";
+import IController, { BASE_ENDPOINT } from "../IController";
 import { Request, Response } from "express";
 import { Connection } from "typeorm";
 import Note from "../../../common/model/Note";
 
 export default class NoteListController implements IController{
-    endpoint = "/api/notes"
+    static readonly ENDPOINT = BASE_ENDPOINT + "/notes";
+    readonly endpoint = NoteListController.ENDPOINT;
 
     private connection : Connection;
 

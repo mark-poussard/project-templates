@@ -1,32 +1,39 @@
-import NoteListController from "./note/NoteListController";
-import NoteController from "./note/NoteController";
-import IController, { ConnectionControllerConstructor } from "./IController";
 import * as core from "express-serve-static-core";
 import { Connection } from "typeorm";
+import IController, { ConnectionDependentConstructor, EmptyConstructor } from "./IController";
+import NoteController from "./note/NoteController";
+import NoteListController from "./note/NoteListController";
+import StatusController from "./status/StatusController";
+
+const connectionDependentControllerKlasses : ConnectionDependentConstructor<IController>[] = [
+    NoteController,
+    NoteListController
+];
+const noDependencyControllerKlasses : EmptyConstructor<IController>[] = [
+    StatusController
+];
+const getControllers = (connection : Connection) => {
+    const result : IController[] = [];
+    result.push(...connectionDependentControllerKlasses.map(x => new x(connection)));
+    result.push(...noDependencyControllerKlasses.map(x => new x()));
+    return result;
+}
 
 class ControllerRegistry{
-    controllerKlasses : ConnectionControllerConstructor<IController>[] = [
-        NoteListController,
-        NoteController
+    controllerKlasses : ConnectionDependentConstructor<IController>[] = [
+        NoteController,
+        NoteListController
     ]
-
-    registerControllers = (app: core.Express, connection : Connection) => {
-        const controllers = this.controllerKlasses.map(ctr => new ctr(connection));
+    setupApp = (app: core.Express, connection : Connection) => {
+        const controllers = getControllers(connection);
+        const methods : ("get" | "patch" | "put" | "post" | "delete")[]
+            = ["get", "patch", "put", "post", "delete"];
         for(let controller of controllers){
-            if(controller.get != null){
-                app.get(controller.endpoint, controller.get);
-            }
-            if(controller.patch != null){
-                app.patch(controller.endpoint, controller.patch);
-            }
-            if(controller.put != null){
-                app.put(controller.endpoint, controller.put);
-            }
-            if(controller.post != null){
-                app.post(controller.endpoint, controller.post);
-            }
-            if(controller.delete != null){
-                app.delete(controller.endpoint, controller.delete);
+            for(const method of methods){
+                const controllerMethodHandler = controller[method];
+                if(controllerMethodHandler != null){
+                    app[method](controller.endpoint, controllerMethodHandler);
+                }
             }
         }
     }

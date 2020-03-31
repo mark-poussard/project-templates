@@ -1,6 +1,8 @@
 import { RequestHandler } from "express";
 import { Connection } from "typeorm";
 
+export const BASE_ENDPOINT = "/api"
+
 export default interface IController{
     readonly endpoint : string;
     
@@ -11,4 +13,5 @@ export default interface IController{
     delete ?: RequestHandler;
 }
 
-export type ConnectionControllerConstructor<T> = new (connection : Connection) => T;
+export type ConnectionDependentConstructor<T> = new (connection : Connection) => T;
+export type EmptyConstructor<T> = new () => T;
