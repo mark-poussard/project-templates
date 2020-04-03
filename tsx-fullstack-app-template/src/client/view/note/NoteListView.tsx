@@ -16,12 +16,12 @@ const NoteListView : React.FC<INoteListViewProps> = props => {
         setNotes(notes => [...notes, note]);
     }
     const deleteNote = (note : Note) => {
-        setNotes(notes => notes.filter(n => n.id !== note.id));
+        setNotes(notes => notes.filter(n => n.getId() !== note.getId()));
     }
     return (
         <div>
             {notes.map(note => 
-                <NoteView key={`${note.id}`} note={note} deleteNote={() => deleteNote(note)}/>
+                <NoteView key={`${note.getId()}`} note={note} deleteNote={() => deleteNote(note)}/>
             )}
             <NewNoteView addNote={addNote} />
         </div>

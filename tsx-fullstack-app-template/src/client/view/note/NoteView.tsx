@@ -14,7 +14,7 @@ const NoteView : React.FC<INoteViewProps> = props => {
     }
     return (
         <div>
-            {props.note.text}
+            {props.note.getText()}
             <button onClick={onDelete}>Delete</button>
         </div>
     )

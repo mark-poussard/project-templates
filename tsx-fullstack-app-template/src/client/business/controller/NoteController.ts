@@ -1,26 +1,21 @@
 import Note from "../../../common/model/Note";
+import Api from "../network/api/Api";
 
 class NoteController {
     getAll = () => {
-        return fetch("/api/notes")
-            .then(response => response.json())
-            .then((resultArray : any[]) => resultArray.map(Note.deserialize));
+        return Api.notes.get();
     }
     
     add = (note : Note) => {
-        return fetch("/api/notes", {
-                method : "POST",
-                body : JSON.stringify(note),
-                headers: {'Content-Type' : 'application/json'}
-            })
-            .then(response => response.json())
-            .then(Note.deserialize);
+        return Api.notes.post(note);
     }
 
     delete = (note : Note) => {
-        return fetch(`/api/notes/${note.id}`, {
-                method : "DELETE"
-            });
+        const id = note.getId();
+        if(id == null){
+            throw new Error(`Note had invalid null id, can't delete.`);
+        }
+        return Api.notes.$(id).delete();
     }
 }
 export default new NoteController();

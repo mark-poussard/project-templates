@@ -5,16 +5,20 @@ import { FieldType } from './deserialization/FieldType';
 
 @Entity()
 export default class Note{
+
     @PrimaryGeneratedColumn()
-    readonly id : Nullable<number>;
+    private id : Nullable<number>;
 
     @Column("text")
-    readonly text : string;
+    private text : string;
 
     constructor(id : Nullable<number>, text : string){
         this.id = id;
         this.text = text;
     }
+
+    getId = () => this.id;
+    getText = () => this.text;
 
     static deserialize = (json : any) => {
         const id = JsonDeserializationHelper.assertOptionalNullField(json, "id", FieldType.NUMBER);
