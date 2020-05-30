@@ -1,0 +1,59 @@
+@import './color.scss';
+
+@font-face {
+  font-family: Broadway;
+  font-display: swap;
+  src: url('/font/Broadway_Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: Butler;
+  font-display: swap;
+  src: url('/font/Butler_ExtraBold.woff') format('woff');
+  font-weight: bolder;
+}
+@font-face {
+  font-family: Butler;
+  font-display: swap;
+  src: url('/font/Butler_Bold.woff') format('woff');
+  font-weight: bold;
+}
+@font-face {
+  font-family: Butler;
+  font-display: swap;
+  src: url('/font/Butler_Regular.woff') format('woff');
+  font-weight: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-align: center;
+  margin: auto;
+  font-family: Butler;
+  color: var(--color-almost-black);
+  h1 {
+    font-family: Broadway;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.5), 
+        1px -1px 1px rgba(255, 255, 255, 0.5), 
+        -1px 1px 1px rgba(255, 255, 255, 0.5),
+        1px 1px 1px rgba(255, 255, 255, 0.5);
+    color: var(--color-dark-green);
+  }
+  h2 {
+    font-family: Broadway;
+  }
+  button {
+    font-family: Butler;
+  }
+}
+
+button{
+    outline: none;
+    // Firefox outline
+    &::-moz-focus-inner {
+        border: 0;
+    }
+}

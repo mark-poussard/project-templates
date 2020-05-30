@@ -1,5 +1,4 @@
 import { APIGatewayProxyHandler } from "aws-lambda";
-import { Nullable } from "./model/Types";
 import Response from "./model/Response";
 import Controller from "./Controller";
 import Request from "./model/Request";
