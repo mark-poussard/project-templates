@@ -1,0 +1,21 @@
+@mixin dark-on-hover{
+    color :  var(--color-beige);
+    &:hover{
+        color : var(--color-light-blue);
+    }
+    transition: all 0.5s;
+}
+
+@keyframes fade-in-animation{
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@mixin fade-in-mixin {
+    opacity: 0;
+    animation: fade-in-animation 1s forwards;
+}
