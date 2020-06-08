@@ -1,0 +1,14 @@
+.content-wrapper{
+    width: 100vw;
+    overflow: hidden;
+    >.content {
+        position: relative;
+        width: calc(4 * 100vw);
+        transition: left 1s;
+        >.content-page {
+            display: inline-block;
+            width: 100vw;
+            height: 100vh;
+        }
+    }
+}

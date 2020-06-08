@@ -1,0 +1,25 @@
+@import './color.scss';
+
+@font-face {
+  font-family: Cosette;
+  font-display: swap;
+  src: url('/font/cosette.ttf') format('ttf');
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-align: center;
+  margin: auto;
+  color: var(--color-almost-black);
+}
+
+button{
+    outline: none;
+    // Firefox outline
+    &::-moz-focus-inner {
+        border: 0;
+    }
+}

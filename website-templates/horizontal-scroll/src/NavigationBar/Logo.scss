@@ -1,0 +1,13 @@
+.navigation-bar-logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+    >.logo-correct {
+        font-family: Cosette;
+        display: inline-block;
+    }
+    >.logo-optic {
+        display: inline-block;
+    }
+}
