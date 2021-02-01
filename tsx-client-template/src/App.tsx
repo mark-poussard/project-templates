@@ -1,14 +1,31 @@
 import React from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
-// import LoadData from './lib/view/components/async/LoadData';
+import LocalContext from './view/components/LocalisationContext/LocalContext';
+import ScrollToTop from './view/components/ScrollToTop/ScrollToTop';
 
 const App : React.FunctionComponent = props => {
   return (
     <div className={`App`}>
-      <h1>Welcome to the tsx client template app</h1>
-      {/* <LoadData promise={Promise.resolve("Tying to add lib with symlink")}>
-        {str => <p>{str}</p>}
-      </LoadData> */}
+      <HashRouter>
+                <LocalContext>
+                    <ScrollToTop />
+                    <Switch>
+                        <Route exact path={["/about"]}>
+                            {/* <About /> */}
+                        </Route>
+                        <Route exact path={["/contact"]}>
+                            {/* <Contact /> */}
+                        </Route>
+                        <Route exact path={["/"]}>
+                            {/* <Home /> */}
+                        </Route>
+                        {/* <Route path={["/posts/:postId"]}>
+                            <PostRoot />
+                        </Route> */}
+                    </Switch>
+                </LocalContext>
+            </HashRouter>
     </div>
   )
 }
