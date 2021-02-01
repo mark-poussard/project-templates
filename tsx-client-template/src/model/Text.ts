@@ -10,7 +10,7 @@ export default class Text {
     }
 
     getText = (localisation : Local) => {
-        if (localisation == Local.FR) {
+        if (localisation === Local.FR) {
             return this.french;
         }
         return this.english;

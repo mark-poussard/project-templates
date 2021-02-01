@@ -7,6 +7,8 @@ interface IScreenDetectorProps {
 }
 
 const ScreenDetector : React.FC<IScreenDetectorProps> = props => {
+    const onActive = props.onActive;
+    const onUnactive = props.onUnactive;
     const detectorRef = useRef<HTMLDivElement>(null);
     const isElementInViewport = () => {
         const el = detectorRef.current!;
@@ -21,18 +23,18 @@ const ScreenDetector : React.FC<IScreenDetectorProps> = props => {
 
     const detects = useCallback(() => {
         if (isElementInViewport()) {
-            props.onActive();
+            onActive();
         }
-        else if (props.onUnactive !== undefined){
-            props.onUnactive();
+        else if (onUnactive !== undefined){
+            onUnactive();
         }
-    }, []);
+    }, [onActive, onUnactive]);
 
     useEffect(() => {
         detects();
-        addEventListener('scroll', detects, false);
-        return () => removeEventListener('scroll', detects, false);
-    }, []);
+        window.addEventListener('scroll', detects, false);
+        return () => window.removeEventListener('scroll', detects, false);
+    }, [detects]);
 
     return (
             <div className={`screen-detector ${props.className}`} ref={detectorRef}>
