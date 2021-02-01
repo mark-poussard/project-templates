@@ -1,7 +1,6 @@
 import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Text from '../../../model/Text';
-import BackgroundOnHover from '../BackgroundOnHover/BackgroundOnHover';
 import { LocalValueContext } from '../LocalisationContext/LocalContext';
 import ScreenDetector from '../ScreenDetector/screenDetector';
 import './NavigationLink.scss';
@@ -34,7 +33,6 @@ const NavigationLink : React.FC<INavigationLinkProps> = props => {
     return (
         <Link className={`navigation-link`} to={props.to} >
             <div className={`navigation-link-div`} ref={ref}>
-                <BackgroundOnHover className={`navigation-link-background`} />
                 {formatText(props.text)}
                 <ScreenDetector className={`screen-detector-navigation-link`} onActive={setAnimation} />
             </div>
