@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
+import Home from './view/components/Home/Home';
 import LocalContext from './view/components/LocalisationContext/LocalContext';
 import ScrollToTop from './view/components/ScrollToTop/ScrollToTop';
 
@@ -18,7 +19,7 @@ const App : React.FunctionComponent = props => {
                             {/* <Contact /> */}
                         </Route>
                         <Route exact path={["/"]}>
-                            {/* <Home /> */}
+                            <Home />
                         </Route>
                         {/* <Route path={["/posts/:postId"]}>
                             <PostRoot />

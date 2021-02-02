@@ -8,9 +8,9 @@ interface INavigationProps {}
 const Navigation : React.FC<INavigationProps> = props => {
     return (
         <div className={`navigation`}>
-            <NavigationLink text={new Text('Blog', 'Le blog')} to='/posts?categories=["all"]' linkIndex={0} />
-            <NavigationLink text={new Text('About', 'À propos')} to='/about' linkIndex={1} />
-            <NavigationLink text={new Text('Contact', 'Contact')} to='/contact' linkIndex={2} />
+            <NavigationLink text={new Text('Blog', 'Le blog')} to='/posts?categories=["all"]' />
+            <NavigationLink text={new Text('About', 'À propos')} to='/about' />
+            <NavigationLink text={new Text('Contact', 'Contact')} to='/contact' />
         </div>
     );
 }
